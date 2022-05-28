@@ -1,2 +1,4 @@
 # cookiecutter-webapp-base
-Template for basic web applications
+
+Template for basic Valentic style web applications using Flask and React.
+

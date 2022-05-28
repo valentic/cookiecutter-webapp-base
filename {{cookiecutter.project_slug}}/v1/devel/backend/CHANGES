@@ -1,0 +1,4 @@
+{% now 'local' %} {{ cookiecutter.full_name }}
+    - Release {{ cookiecutter.release }} 
+    - Begin development 
+
