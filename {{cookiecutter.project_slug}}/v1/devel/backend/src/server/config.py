@@ -39,10 +39,6 @@ class Config(object):
 
     SQLALCHEMY_URI = f'postgresql://@'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    SQLALCHEMY_DATABASE_URI = f'{SQLALCHEMY_URI}/{PROJECT}'
-    SQLALCHEMY_BINDS = {
-        'users':    f'{SQLALCHEMY_URI}/{PROJECT}-users'
-    }
 
     COMPRESS_MIMETYPES = ['text/html', 'text/css', 'text/xml',
                           'text/javascript', 'application/json',
@@ -51,6 +47,11 @@ class Config(object):
 class Production(Config):
 
     DEBUG = False
+
+    SQLALCHEMY_DATABASE_URI = f'{SQLALCHEMY_URI}/{PROJECT}-prod'
+    SQLALCHEMY_BINDS = {
+        'users':    f'{SQLALCHEMY_URI}/{PROJECT}-users-prod'
+    }
 
 class Development(Config):
 

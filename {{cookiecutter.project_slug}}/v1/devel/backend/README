@@ -15,6 +15,9 @@ Flask Backend for Valentic Websites
             Add user creation
             Add deployment notes
 
+2022-05-28  Todd Valentic
+            Use -devel and -prod on database names
+
 To build wheel:
 
     make wheel
@@ -106,8 +109,8 @@ Database
 
             Assume PROJECT is set to NAME.VERSION (i.e.  conus.v1) 
 
-            createdb -O tranposrt $PROJECT
-            createdb -O tranposrt $PROJECT-users
+            createdb -O tranposrt $PROJECT-prod
+            createdb -O tranposrt $PROJECT-users-prod
 
             createdb -O tranposrt $PROJECT-devel
             createdb -O tranposrt $PROJECT-users-devel
