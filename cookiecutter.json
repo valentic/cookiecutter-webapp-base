@@ -1,8 +1,10 @@
 {
   "project_name": "Valentic Webapp Base",
   "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}",
+  "project_branch": "v1",
   "project_short_description": "Boilerplate for a Valentic web application using React and Flask.",
   "release": "0.0.0",
+  "project_branch": "v1",
   "development_port": "9000",
   "siteroot": "/v1",
   "open_source_license": ["MIT license", "BSD license", "ISC license", "Apache Software License 2.0", "GNU General Public License v3", "Not open source"],

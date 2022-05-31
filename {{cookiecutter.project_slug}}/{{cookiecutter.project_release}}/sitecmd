@@ -19,13 +19,17 @@
 #               Rework config to use key=value pairs
 #               Release 1.1.0
 #
+#   2022-05-31  Todd Valentic
+#               Add branch config parameter
+#               Release 1.1.1
+#
 ##########################################################################
 
 set -o errexit   # abort on nonzero exitstatus
 set -o nounset   # abort on unbound variable
 set -o pipefail  # do not hide errors within pipes
 
-VERSION=1.1.0
+VERSION=1.1.1
 
 BASEDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 FRONTEND_DIR=${BASEDIR}/devel/frontend
@@ -65,6 +69,7 @@ function usage()
      release              Release version (i.e., 1.0.3)
      siteroot             Hosted URL path (i.e., /v3)
      project              Project name (i.e. data_viewer)
+     branch               Project branch (i.e. v1)
      port                 Development server port (i.e. 9000) 
 
 HEREDOC
@@ -219,6 +224,17 @@ config_port () {
     sed -i.bak "s|\(REACT_APP_API_PORT=\)\([^ ]*\)|\1'${port}'|" $FRONTEND_DIR/.env
 }
 
+config_branch () {
+
+    local branch=$1
+
+    echo "Setting branch to ${branch}"
+
+    sed -i.bak "s|\(branch=\)\([^ ]*\)|\1'${branch}'|" $BACKEND_DIR/src/server/metadata.py
+}
+
+
+
 
 config_handler () {
 
@@ -238,6 +254,7 @@ config_handler () {
         release )   config_release ${value}; ;;
         project )   config_project ${value}; ;;
         port )      config_port ${value}; ;; 
+        branch )    config_branch ${value}; ;;
         * )         echo "Unknown config option: $key"; ;; 
       esac
     done
