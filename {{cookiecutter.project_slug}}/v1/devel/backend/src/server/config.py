@@ -48,9 +48,9 @@ class Production(Config):
 
     DEBUG = False
 
-    SQLALCHEMY_DATABASE_URI = f'{SQLALCHEMY_URI}/{PROJECT}-prod'
+    SQLALCHEMY_DATABASE_URI = f'{Config.SQLALCHEMY_URI}/{Config.PROJECT}-prod'
     SQLALCHEMY_BINDS = {
-        'users':    f'{SQLALCHEMY_URI}/{PROJECT}-users-prod'
+        'users':    f'{Config.SQLALCHEMY_URI}/{Config.PROJECT}-users-prod'
     }
 
 class Development(Config):
