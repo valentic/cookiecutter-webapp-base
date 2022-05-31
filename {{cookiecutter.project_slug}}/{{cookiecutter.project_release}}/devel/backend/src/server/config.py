@@ -20,6 +20,7 @@ class Config(object):
     HOST = socket.gethostname()
     VERSION = metadata.version
     PROJECT = metadata.project
+    BRANCH = metadata.branch
 
     # Mail configuration
 
@@ -47,19 +48,21 @@ class Config(object):
 class Production(Config):
 
     DEBUG = False
+    PREFIX = f'{Config.SQLALCHEMY_URI}/{Config.PROJECT}.{Config.BRANCH}'
 
-    SQLALCHEMY_DATABASE_URI = f'{Config.SQLALCHEMY_URI}/{Config.PROJECT}-prod'
+    SQLALCHEMY_DATABASE_URI = f'{PREFIX}-prod'
     SQLALCHEMY_BINDS = {
-        'users':    f'{Config.SQLALCHEMY_URI}/{Config.PROJECT}-users-prod'
+        'users':    f'{PREFIX}-users-prod'
     }
 
 class Development(Config):
 
     DEBUG = True
+    PREFIX = f'{Config.SQLALCHEMY_URI}/{Config.PROJECT}.{Config.BRANCH}'
 
-    SQLALCHEMY_DATABASE_URI = f'{Config.SQLALCHEMY_URI}/{Config.PROJECT}-devel'
+    SQLALCHEMY_DATABASE_URI = f'{PREFIX}-devel'
     SQLALCHEMY_BINDS = {
-        'users':    f'{Config.SQLALCHEMY_URI}/{Config.PROJECT}-users-devel'
+        'users':    f'{PREFIX}-users-devel'
     }
 
 
