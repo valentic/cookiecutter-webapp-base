@@ -18,6 +18,9 @@ Flask Backend for Valentic Websites
 2022-05-28  Todd Valentic
             Use -devel and -prod on database names
 
+2022-06-16  Todd Valentic
+            Update backend README database instructions
+
 To build wheel:
 
     make wheel
@@ -127,7 +130,7 @@ Database
 
             Work in the backend src directory:
 
-                cd devel/backend/src
+                cd devel/backend/src/server
             
             FLASK_ENV=development server-cmd db init --multidb
 
