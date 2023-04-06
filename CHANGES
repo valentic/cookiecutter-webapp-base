@@ -1,3 +1,5 @@
 2023-04-06  Todd Valentic
             Update codebase
-            Use vite
+            Use vite for tooling (was cra)
+            Use mantine for frontend (was semantic ui)
+            Use npm for package management (was yarn)
