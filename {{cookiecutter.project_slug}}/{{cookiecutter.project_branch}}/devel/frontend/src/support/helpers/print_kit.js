@@ -9,6 +9,12 @@
  *
  *  2020-08-25  Todd Valentic
  *              Add additional functions from hbrops
+ *              
+ *  2022-08-03  Todd Valentic
+ *              Add check in fromnow() to convert jsdate to moment
+ *              
+ *  2022-08-16  Todd Valentic
+ *              Use &nbsp (\u00A0)
  *
 \********************************************************************/
 
@@ -74,23 +80,23 @@ const as_degs = (value,decimals) => {
 }
 
 const as_m = (value,decimals) => {
-    return as_num(value,' m',decimals)
+    return as_num(value,'\u00A0m',decimals)
 }
 
 const as_mb = (value,decimals) => {
-    return as_num(value,' mb',decimals)
+    return as_num(value,'\u00A0mb',decimals)
 }
 
 const as_inhg = (value) => {
-    return as_num(value,' in Hg',2)
+    return as_num(value,'\u00A0in\u00A0Hg',2)
 }
 
 const as_ft = (value,decimals) => {
-    return as_num(value,' ft',decimals)
+    return as_num(value,'\u00A0ft',decimals)
 }
 
 const as_mps = (value,decimals) => {
-    return as_num(value,' m/s',decimals)
+    return as_num(value,'\u00A0m/s',decimals)
 }
 
 const as_percent = (value,decimals) => {
@@ -98,26 +104,26 @@ const as_percent = (value,decimals) => {
 }
 
 const as_voltage = (value,decimals) => {
-    return as_num(value,' V',decimals)
+    return as_num(value,'\u00A0V',decimals)
 }
 
 const as_voltage_mv = (value,decimals) => {
-    return as_num(value*1000,' mV',decimals)
+    return as_num(value*1000,'\u00A0mV',decimals)
 }
 const as_current = (value,decimals) => {
-    return as_num(value,' A',decimals)
+    return as_num(value,'\u00A0A',decimals)
 }
 
 const as_current_ma = (value,decimals) => {
-    return as_num(value*1000,' mA',decimals)
+    return as_num(value*1000,'\u00A0mA',decimals)
 }
 
 const as_power = (value,decimals) => {
-    return as_num(value,' W',decimals)
+    return as_num(value,'\u00A0W',decimals)
 }
 
 const as_power_mw = (value,decimals) => {
-    return as_num(value,' mW',decimals)
+    return as_num(value,'\u00A0mW',decimals)
 }
 
 const as_flag = (value) => {
@@ -151,7 +157,7 @@ const as_degs_compass = (value,decimals) => {
     if (not_set(value))
         return '--'
 
-    return as_degs(value,decimals)+' '+as_compass(value)
+    return as_degs(value,decimals)+'\u00A0'+as_compass(value)
 }
 
 const as_moment = (value, format='YYYY-MM-DD HH:mm:ss') => {
@@ -174,7 +180,11 @@ const as_fromnow = (tm) => {
     if (not_set(tm))
         return '--'
 
-    return tm.fromNow()
+    if (moment.isMoment(tm)) {
+        return tm.fromNow()
+    } 
+
+    return moment(tm).fromNow() 
 }
 
 const as_duration = (duration) => {
@@ -186,9 +196,9 @@ const as_duration = (duration) => {
     let result = ''
 
     if (d>1) {
-        result += d + ' days '
+        result += d + '\u00A0days\u00A0 '
     } else if (d>0) {
-        result += d + ' day '
+        result += d + '\u00A0day\u00A0'
     }
 
     result += zpad(h,2)+':'+zpad(m,2)+':'+zpad(s,2)
@@ -213,7 +223,7 @@ const as_coord_deg = (coordinate,posLabel,negLabel) => {
     minutes = zpad(minutes,2)
     seconds = zpad(seconds,2)
 
-    return degrees + "\u00B0 " + minutes + "\u2032 " + seconds + "\u2033 " + label;
+    return degrees + "\u00B0\u00A0" + minutes + "\u2032\u00A0" + seconds + "\u2033\u00A0" + label;
 }
 
 const as_latitude_deg = (lat) => {

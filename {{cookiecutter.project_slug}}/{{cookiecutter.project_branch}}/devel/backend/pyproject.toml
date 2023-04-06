@@ -1,3 +1,96 @@
+
+{%- set license_classifiers = {
+    'MIT license': 'License :: OSI Approved :: MIT License',
+    'BSD license': 'License :: OSI Approved :: BSD License',
+    'ISC license': 'License :: OSI Approved :: ISC License (ISCL)',
+    'Apache Software License 2.0': 'License :: OSI Approved :: Apache Software License',
+    'GNU General Public License v3': 'License :: OSI Approved :: GNU General Public License v3 (GPLv3)'
+} %}
+
+{%- set github_project = 'https://github.com/{{cookiecutter.github_username}}/{{cookiecutter.project_slug}}' %}
+
 [build-system]
-requires = ["setuptools", "wheel"]
+requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
+
+[project]
+
+name = "{{ cookiecutter.project_slug }}"
+dynamic = ["version"]
+description = "{{ cookiecutter.project_short_description }}"
+readme = "README.rst"
+requires-python= ">= 3.9"
+license = { file = "LICENSE" }
+authors = [
+    { name= "{{ cookiecutter.full_name }}", email="{{ cookiecutter.email }}" }
+]
+
+classifiers = [
+    "Programming Language :: Python :: 3",
+{%- if cookiecutter.open_source_license in license_classifiers %}
+    "{{ license_classifiers[cookiecutter.open_source_license] }}",
+{%- endif %}
+    "Operating System :: OS Independent"
+]
+
+dependencies = [
+    "pytz",
+    "dateutils",
+    "eventlet",
+    "requests",
+    "bcrypt",
+    "flask",
+    "psycopg2-binary",
+    "sqlalchemy~=1.4",
+    "Flask-SQLAlchemy",
+    "flask-compress",
+    "flask-script",
+    "flask-migrate",
+    "flask-bcrypt",
+    "flask-jwt-extended",
+    "flask-socketio",
+    "flask-restful",
+    "flask-mail",
+    "flask-flatpages",
+    "coverage",
+    "PyJWT",
+    "cryptography",
+    "itsdangerous",
+    "docutils"
+]
+
+[project.optional-dependencies]
+
+test = [
+    "pytest",
+    "pyfakefs"
+    ]
+
+devel = [
+    "build",
+    "pylint",
+    "black",
+    "pip-tools"
+    ]
+
+[project.urls]
+
+homepage="https://github.com/{{cookiecutter.github_username}}/{{cookiecutter.project_slug}}"
+repository="https://github.com/{{cookiecutter.github_username}}/{{cookiecutter.project_slug}}"
+
+[project.scripts]
+
+server-cmd = "server.commands:cli"
+server-launch = "server.commands:launch"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.dynamic]
+version = {attr = "server.metadata.version"}
+
+[tool.pytest.ini_options]
+addopts = [
+    "--import-mode=importlib"
+]
+

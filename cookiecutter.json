@@ -12,6 +12,7 @@
   "github_username": "valentic",
   "_copy_without_render": [
     "*.js",
+    "*.jsx",
     "*/templates/*"
     ]
 }

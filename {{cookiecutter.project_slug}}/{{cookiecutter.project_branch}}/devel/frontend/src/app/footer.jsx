@@ -1,6 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { createStyles } from '@mantine/core'
+import { 
+    Text,
+    createStyles 
+} from '@mantine/core'
 
 const useStyles = createStyles((theme) => {
     
@@ -18,12 +21,14 @@ const useStyles = createStyles((theme) => {
 
 const AppFooter = ({className, props}) => {
 
-    const release = process.env.REACT_APP_RELEASE
+    const release = import.meta.env.VITE_RELEASE
     const { classes, cx } = useStyles()
 
     return (
         <footer className={cx(classes.footer, className)} {...props}>
-          Release {release} &nbsp; <Link to='/admin/'>Admin</Link>
+          <Text size="xs" color="dimmer">
+            Release {release} &nbsp; <Link to='/admin/'>Admin</Link>
+          </Text>
         </footer>
     )
 }

@@ -1,13 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
-import { authService } from 'services'
+import { authService } from '~/services'
 import { LoadingOverlay } from '@mantine/core'
 
-const AuthContext = React.createContext(null)
-
-const useAuth = () => {
-    return React.useContext(AuthContext)
-}
+import { AuthContext } from './authcontext'
 
 const AuthProvider = ({ children }) => {
     
@@ -78,5 +74,5 @@ const AuthProvider = ({ children }) => {
     )
 }
 
-export { AuthContext, useAuth, AuthProvider }
+export { AuthProvider }
 

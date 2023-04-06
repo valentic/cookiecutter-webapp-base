@@ -1,10 +1,10 @@
 const { createProxyMiddleware } = require('http-proxy-middleware');
 
-const port = process.env.REACT_APP_API_PORT 
-const api = process.env.REACT_APP_API_URL 
-const auth = process.env.REACT_APP_AUTH_URL
-const admin = process.env.REACT_APP_ADMIN_URL
-const socketio = process.env.REACT_APP_SOCKETIO_URL
+const port = import.meta.env.VITE_API_PORT 
+const api = import.meta.env.VITE_API_URL 
+const auth = import.meta.env.VITE_AUTH_URL
+const admin = import.meta.env.VITE_ADMIN_URL
+const socketio = import.meta.env.VITE_SOCKETIO_URL
 const url = 'http://127.0.0.1:'+port.toString()
 
 module.exports = function(app) {

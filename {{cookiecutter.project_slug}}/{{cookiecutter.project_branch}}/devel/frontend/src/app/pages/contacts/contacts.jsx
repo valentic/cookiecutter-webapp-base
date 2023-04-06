@@ -13,8 +13,8 @@ const Contacts = () => {
           >Contact Us</Title>
        
           <p>
-          For more information about the school, please contact:{" "}
-          <a href="mailto:shikha.raizada@ucf.edu">shikha.raizada@ucf.edu</a>.
+          For more information, please contact:{" "}
+          <a href="mailto:nobody@localhost">nobody@localhost</a>.
           </p>
          
         </Container>

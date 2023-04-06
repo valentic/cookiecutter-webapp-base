@@ -1,3 +1,4 @@
+import os
 import click
 import sqlalchemy
 from flask import current_app
@@ -57,12 +58,16 @@ def del_userrole(user, role):
 @click.option('-r','--root',default='/',show_default=True)
 @click.option('-d','--debug',is_flag=True,show_default=True)
 def launch(port,root,debug):
+    os.environ['FLASK_ROOT'] = root
     if debug:
-        mode = 'development'
+        os.environ['FLASK_MODE'] = 'development'
+        os.environ['FLASK_DEBUG'] = 'true'
     else:
-        mode = 'production'
-    app = create_app(root=root,mode=mode)
-    socketio.run(app,port=port,debug=debug)
+        os.environ['FLASK_MODE'] = 'production'
+        os.environ['FLASK_DEBUG'] = 'false'
+
+    app = create_app()
+    socketio.run(app, port=port, debug=debug)
 
 ##########################################################################
 # User functions

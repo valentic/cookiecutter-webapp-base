@@ -4,7 +4,7 @@ import { Box, createStyles } from '@mantine/core'
 
 import { AppHeader } from './header'
 import { AppFooter } from './footer'
-import { useAuth } from 'app'
+import { useAuth } from '~/app'
 
 const useStyles = createStyles((theme) => {
 

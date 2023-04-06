@@ -1,22 +1,28 @@
 import React from 'react'
-import { useBooleanToggle } from '@mantine/hooks'
+import { useDisclosure } from '@mantine/hooks'
 import { NavLink } from 'react-router-dom'
-import leftLogo from 'support/assets/logoipsum-logo-59.svg'
-import rightLogo from 'support/assets/logoipsum-logo-64.svg'
+import leftLogo from '~/support/assets/logoipsum-logo-59.svg'
+import rightLogo from '~/support/assets/logoipsum-logo-64.svg'
 
 import { 
-    createStyles, 
     Box,
-    Group, 
     Burger, 
+    Group, 
+    Header,
     Paper, 
-    Text, 
-    Transition 
+    Text,
+    Transition,
+    createStyles
     } from '@mantine/core'
 
-const SMALL_HEADER_HEIGHT = 50
+const HEADER_HEIGHT = 60
 
 const useStyles = createStyles((theme) => ({
+
+    root: {
+        postition: 'relative',
+        zIndex: 1
+    },
 
     header: {
         display: 'grid',
@@ -36,13 +42,13 @@ const useStyles = createStyles((theme) => ({
         position: 'relative',
 
         [theme.fn.smallerThan('sm')]: {
-            height: SMALL_HEADER_HEIGHT, 
+            height: HEADER_HEIGHT, 
         },
     },
 
     dropdown: {
         position: 'absolute',
-        top: SMALL_HEADER_HEIGHT,
+        top: HEADER_HEIGHT,
         left: 0,
         right: 0,
         zIndex: 0,
@@ -148,8 +154,8 @@ const useStyles = createStyles((theme) => ({
 
 const AppHeader = ({ links, className }) => {
 
-    const [opened, toggleOpened] = useBooleanToggle(false);
-    const { classes, cx } = useStyles();
+    const [opened, { toggle } ] = useDisclosure(false)
+    const { classes, cx } = useStyles()
 
     const items = links.map((link) => (
         <NavLink
@@ -157,20 +163,18 @@ const AppHeader = ({ links, className }) => {
             to={link.link}
             replace
             className={classes.link}
-            onClick={(event) => {
-                toggleOpened(false);
-            }}
+            onClick={(event) => { toggle(false) }}
         >
           {link.label}
         </NavLink>
     ))
 
     return (
-      <Box className={cx(classes.header, className)}>
+      <Header className={cx(classes.header, className)}>
         <img className={classes.logoLeft} src={leftLogo} alt="Left Logo" />
         <Box className={classes.titleBox}>
           <Text className={classes.title} > 
-            {process.env.REACT_APP_TITLE}
+            {import.meta.env.VITE_TITLE}
           </Text>
           <Group className={classes.links} spacing={5} >
             {items}
@@ -180,7 +184,7 @@ const AppHeader = ({ links, className }) => {
 
         <Burger
           opened={opened}
-          onClick={() => toggleOpened()}
+          onClick={toggle}
           className={classes.burger}
           size="sm"
           color="white"
@@ -193,7 +197,7 @@ const AppHeader = ({ links, className }) => {
             </Paper>
           )}
         </Transition>
-      </Box>
+      </Header>
     )
 }
 

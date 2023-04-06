@@ -74,7 +74,15 @@ def filter_columns(obj, data, extra=None):
     return dict((k,v) for k,v in data.items() if k in cols)
 
 #-------------------------------------------------------------------------
-# Tables
+# Reflected data tables
+#-------------------------------------------------------------------------
+
+#class Site(db.Model):
+#    __tablename__ = 'sites'
+#    __table_args__ = {'autoload':True,'autoload_with':db.engine}
+
+#-------------------------------------------------------------------------
+# User management tables
 #-------------------------------------------------------------------------
 
 class History(db.Model):
