@@ -79,7 +79,7 @@ def create_app():
 
     # Create and configure the app
 
-    mode = os.getenv('FLASK_ENV','production')
+    mode = os.getenv('FLASK_MODE','production')
     root = os.getenv('FLASK_ROOT','/')
 
     app = Flask(__name__,instance_relative_config=True)
