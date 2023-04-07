@@ -38,7 +38,7 @@ class Config(object):
 
     TEMPLATES_AUTO_RELOAD = True
 
-    STATIC_FOLDER = 'server/templates/static'
+    STATIC_FOLDER = 'server/templates/assets'
 
     FLATPAGES_EXTENSION = ['.rst']
 
