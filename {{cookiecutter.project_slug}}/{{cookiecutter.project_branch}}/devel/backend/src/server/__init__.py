@@ -8,7 +8,7 @@ from flask_mail import Mail
 from flask_jwt_extended import JWTManager
 from flask_flatpages import FlatPages 
 from werkzeug.middleware.proxy_fix import ProxyFix
-from flask.json import JSONEncoder
+from json import JSONEncoder
 from itsdangerous import URLSafeTimedSerializer
 from docutils.core import publish_parts
 from flask.wrappers import Request
