@@ -1,8 +1,12 @@
+2023-04-06  Todd Valentic
+            Update codebase
+            Use vite for tooling (was create-react-app)
+            Use mantine for frontend (was semantic ui)
+            Use npm for package management (was yarn)
+
 2023-08-18  Todd Valentic
             Use standard library json (flask.json deprecated) 
 
-2023-04-06  Todd Valentic
-            Update codebase
-            Use vite for tooling (was cra)
-            Use mantine for frontend (was semantic ui)
-            Use npm for package management (was yarn)
+2023-10-17  Todd Valentic
+            Allow setting python interpreter (PYTHON environ var)
+
