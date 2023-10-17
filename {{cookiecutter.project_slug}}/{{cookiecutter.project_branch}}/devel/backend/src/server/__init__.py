@@ -8,16 +8,16 @@ from flask_mail import Mail
 from flask_jwt_extended import JWTManager
 from flask_flatpages import FlatPages 
 from werkzeug.middleware.proxy_fix import ProxyFix
-from json import JSONEncoder
 from itsdangerous import URLSafeTimedSerializer
 from docutils.core import publish_parts
 from flask.wrappers import Request
 
-import os
-import uuid
-import logging
 import decimal
 import datetime
+import json
+import logging
+import os
+import uuid
 
 logging.basicConfig(level=logging.INFO)
 logging.getLogger('sqlalchemy.engine.base').setLevel(logging.WARN)
@@ -50,7 +50,7 @@ class ReverseProxy(object):
 
         return self.app(environ,start_response)
 
-class Encoder(JSONEncoder):
+class Encoder(json.JSONEncoder):
     def default(self,o):
         if isinstance(o,decimal.Decimal):
             return float(o)
