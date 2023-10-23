@@ -1,49 +1,27 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
-import { Box, createStyles } from '@mantine/core'
+import { Box } from '@mantine/core'
 
-import { AppHeader } from './header'
-import { AppFooter } from './footer'
 import { useAuth } from '~/app'
 
-const useStyles = createStyles((theme) => {
-
-    return {
-
-        page: {
-            height: '100vh',
-            display: 'grid',
-            gridTemplateColumns: '1fr',
-            gridTemplateRows: 'auto 1fr auto',
-            gridTemplateAreas: "'header' 'main' 'footer'",
-        },
-
-        header: {
-            gridArea: 'header'
-        },
-
-        main: {
-            gridArea: 'main',
-            overflow: 'auto',
-            boxShadow: '0px 1px 10px rgba(0,0,0,0.25)',
-            zIndex: '5',
-        },
-
-        footer: {
-            gridArea: 'footer'
-        }
-    }
-})
+import { Header } from './header'
+import { Footer } from './footer'
+import classes from './layout.module.css'
 
 const Layout = () => {
 
-    const { classes } = useStyles()
     const auth = useAuth()
 
+    const submenu = [
+        { label: 'Home',        link: '/'           },
+        { label: 'Contacts',    link: '/contacts'   }
+    ]
+
     let links = [
-        { link: '/',            label: 'Home'           },
-        { link: '/contacts',    label: 'Contact Us'     }
-        ]
+        { label: 'Home',        link: '/'           },
+        { label: 'Features',    links: submenu      },
+        { label: 'Contact Us',  link: '/contacts'   },
+    ]
 
     if (auth.loggedIn()) {
         links.push({link: '/admin',     label: 'Dashboard'  })
@@ -52,13 +30,13 @@ const Layout = () => {
     
     return (
         <Box className={classes.page}> 
-          <AppHeader className={classes.header} links={links} /> 
+          <Header links={links} /> 
           <main className={classes.main}> 
             <section className={classes.section} > 
               <Outlet />
             </section>
           </main>
-          <AppFooter className={classes.footer}/> 
+          <Footer /> 
         </Box>
     )
 }
