@@ -1,6 +1,6 @@
 #!/bin/sh
 
-./v1/sitecmd config \
+./{{cookiecutter.project_branch}}/sitecmd config \
     siteroot={{cookiecutter.siteroot}} \
     branch={{cookiecutter.project_branch}} \
     release={{cookiecutter.release}} \
