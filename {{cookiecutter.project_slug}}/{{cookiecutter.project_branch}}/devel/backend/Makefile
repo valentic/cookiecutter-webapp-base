@@ -19,8 +19,8 @@ cleanup:
 	find src -type f -name '*.pyc' -delete
 	find src -type f -name '*.bak' -delete
 	find src -name __pycache__ -type d -exec rm -r {} +
-	rm src/server/static
-	rm src/server/templates
+	rm -f src/server/static
+	rm -f src/server/templates
 
 build:	
 	. ${VIRTENV}/bin/activate; \
