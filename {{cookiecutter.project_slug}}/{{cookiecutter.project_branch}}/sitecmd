@@ -47,6 +47,7 @@
 #   2024-01-17  Todd Valentic
 #               Source profile if found in same directory as sitecmd
 #               Use PYTHON value when setting up prod environment
+#               Release 1.1.7
 #
 ##########################################################################
 
@@ -54,7 +55,7 @@ set -o errexit   # abort on nonzero exitstatus
 set -o nounset   # abort on unbound variable
 set -o pipefail  # do not hide errors within pipes
 
-VERSION=1.1.6
+VERSION=1.1.7
 
 BASEDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 FRONTEND_DIR=${BASEDIR}/devel/frontend
