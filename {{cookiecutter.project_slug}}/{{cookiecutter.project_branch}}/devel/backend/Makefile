@@ -3,7 +3,7 @@
 
 SHELL:=/bin/bash
 VIRTENV=venv
-PYTHON?=python3
+PYTHON ?= python3
 
 help:
 	@echo "Targets:"
