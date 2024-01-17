@@ -44,6 +44,10 @@
 #               Run npm install to update project-lock.json if needed
 #               Release 1.1.6 
 #
+#   2024-01-17  Todd Valentic
+#               Source profile if found in same directory as sitecmd
+#               Use PYTHON value when setting up prod environment
+#
 ##########################################################################
 
 set -o errexit   # abort on nonzero exitstatus
@@ -56,6 +60,12 @@ BASEDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 FRONTEND_DIR=${BASEDIR}/devel/frontend
 BACKEND_DIR=${BASEDIR}/devel/backend
 PROD_DIR=${BASEDIR}/prod
+
+if [ -f ${BASEDIR}/profile ]; then
+    . ${BASEDIR}/profile
+fi
+
+PYTHON=${PYTHON:-python3}
 
 #-------------------------------------------------------------------------
 # Usage function
@@ -294,7 +304,7 @@ deploy_handler() {
 
     (
         cd ${PROD_DIR}
-        [[ ! -d venv ]] && python3 -m venv venv 
+        [[ ! -d venv ]] && $PYTHON -m venv venv 
 
         . venv/bin/activate
         pip install -U pip
